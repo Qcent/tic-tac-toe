@@ -10,7 +10,7 @@ player2 = player('o');
 
 const board = (() => {
     const spacesArr = Array.from(document.getElementsByClassName('space'));
-    const playboardArray = ['','','','','','','','',''];
+    let playboardArray = ['','','','','','','','',''];
     let isPlaying = player1;
 
     for (let i=0; i < spacesArr.length; i++) {
@@ -27,6 +27,12 @@ const board = (() => {
             spacesArr[i].textContent = playboardArray[i];
         }
     }
+    const reset = () => {
+        playboardArray = playboardArray.map(function() {
+            return '';
+        });
+        renderBoard();
+    }
     const spaceIsEmpty = (item) => {
         return item === '';
     };
@@ -42,7 +48,10 @@ const board = (() => {
 
     return {
         getArray,
-        renderBoard
+        renderBoard,
+        reset,
     }
 })();
 
+const resetBtn = document.getElementById('reset-btn')
+resetBtn.addEventListener('click', board.reset);
