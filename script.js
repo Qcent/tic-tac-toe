@@ -17,6 +17,7 @@ const board = (() => {
     const spacesArr = Array.from(document.getElementsByClassName('space'));
     let playboardArray = ['','','','','','','','',''];
     let isPlaying = player1;
+    let moves = 0;
 
     for (let i=0; i < spacesArr.length; i++) {
         spacesArr[i].addEventListener('click', function(e) {
@@ -24,6 +25,11 @@ const board = (() => {
             if (spaceIsEmpty(playboardArray[idx])) {
                 recordMove(idx);
                 renderBoard();
+                moves++;
+                if (moves == 9) {
+                    alert("It's a tie!");
+                    board.reset();
+                }
             }
             if (game.playerWon(playboardArray)) {
                 winningPlayer = game.playerWon(playboardArray);
