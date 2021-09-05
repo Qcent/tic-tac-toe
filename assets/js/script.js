@@ -6,11 +6,11 @@ function player(name, sym) { // define a function for use as utility returning a
     }
 }
 
-let player1 = player('player 1', 'x'); // prompt("Please enter name player 1:");
-let player2 = player('player 2', 'o'); // prompt("Please enter name player 2:");
+let player1 = player('Player 1', 'X'); // prompt("Please enter name player 1:");
+let player2 = player('Player 2', 'O'); // prompt("Please enter name player 2:");
 let players = { // an object 'players' which is a key : value pair relating symbol used to the player name
-    'x': player1,
-    'o': player2
+    'X': player1,
+    'O': player2
 }
 
 const board = (() => { // an object named board that will hold all data and methods related to the game board
@@ -33,11 +33,11 @@ const board = (() => { // an object named board that will hold all data and meth
             }
 
             /************************* */
-            if (game.playerWon(playboardArray)) { // if receive a non falsy value from playerWon() function of game object after sending it playboardArray 
+            /*  WINNING CONDITION      */
+            if (game.playerWon(playboardArray)) { // if receive a non falsy value from playerWon() method of game object after sending it playboardArray 
+                // then the game is won and game.playerWon will return the row, colum or diagonal that make up the win
 
-                winningBoxes = game.playerWon(playboardArray); //the winningPlayer is assigned the return of the playerWon function
-
-                renderWin(game.playerWon(playboardArray));
+                renderWin(game.playerWon(playboardArray)); // adjusts the style of the winning row, colum or diagonal
 
                 //set a little delay before announcing the win so the style change can be observed
                 setTimeout(function() { alert(((isPlaying == player1) ? player2.name : player1.name) + " Has Won "); }, 300);
@@ -106,45 +106,45 @@ const game = (() => { // an object 'game' that will contain all variables and me
         if (boardArray[0] !== '' && // the one of the spaces isnt blank and they all equal eachother they must all be either X's or O's
             boardArray[0] === boardArray[1] &&
             boardArray[0] === boardArray[2]) {
-            return "fr";
+            return "fr"; //first row
         }
         if (boardArray[3] !== '' &&
             boardArray[3] === boardArray[4] &&
             boardArray[3] === boardArray[5]) {
-            return "sr";
+            return "sr"; //second row
         }
         if (boardArray[6] !== '' &&
             boardArray[6] === boardArray[7] &&
             boardArray[6] === boardArray[8]) {
-            return "tr";
+            return "tr"; //third row
         }
         //check every column
         if (boardArray[0] !== '' &&
             boardArray[0] === boardArray[3] &&
             boardArray[0] === boardArray[6]) {
-            return "fc";
+            return "fc"; //first column
         }
         if (boardArray[1] !== '' &&
             boardArray[1] === boardArray[4] &&
             boardArray[1] === boardArray[7]) {
-            return "sc";
+            return "sc"; //second column
         }
         if (boardArray[2] !== '' &&
             boardArray[2] === boardArray[5] &&
             boardArray[2] === boardArray[8]) {
-            return "tc";
+            return "tc"; //third column
         }
 
         //check both diagonals
         if (boardArray[0] !== '' &&
             boardArray[0] === boardArray[4] &&
             boardArray[0] === boardArray[8]) {
-            return "bs";
+            return "bs"; // the backslash diagonal
         }
         if (boardArray[2] !== '' &&
             boardArray[2] === boardArray[4] &&
             boardArray[2] === boardArray[6]) {
-            return "fs";
+            return "fs"; // the front slash diagonal
         }
 
         return false;
@@ -188,7 +188,7 @@ const game = (() => { // an object 'game' that will contain all variables and me
                 */
     }
 
-    return {
+    return { // the default return value of the game object is to invoke playerWon ?  not sure here
         playerWon,
     }
 })()
