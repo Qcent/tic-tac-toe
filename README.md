@@ -8,3 +8,5 @@ I took it upon myself to study and comment on the code line by line to understan
 
 ## Issues
 Um i guess i have a flawed win detection because i just got 2 Os and an X in the top row to count as a win... boo :(
+    ![The game being buggy!](./assets/images/app-screenshot-error.png)
+    
