@@ -1,18 +1,3 @@
-function getCSSRule(ruleName) {
-    ruleName = ruleName.toLowerCase();
-    var result = null;
-    var find = Array.prototype.find;
-
-    find.call(document.styleSheets, styleSheet => {
-        result = find.call(styleSheet.cssRules, cssRule => {
-            return cssRule instanceof CSSStyleRule &&
-                cssRule.selectorText.toLowerCase() == ruleName;
-        });
-        return result != null;
-    });
-    return result;
-}
-
 function player(name, sym) { // define a function for use as utility returning a players name and symbol / 'X' or 'O'
     return {
         name,
@@ -114,13 +99,13 @@ resetBtn.addEventListener('click', board.reset); // add a click listener to rese
 
 const game = (() => { // an object 'game' that will contain all variables and methods relating to the game logic
 
-    const playerWon = (boardArray) => { // the only method we need / will analyise the whole game board (boardAttay) and detrmines if a winning state has been reached
+    const playerWon = (boardArray) => { // the only method we need / will analyise the whole game board (boardArray) and detrmines if a winning state has been reached
         let winningPlayer; // initialize a var for the winner
 
         //check every box in every row
         if (boardArray[0] !== '' && // the one of the spaces isnt blank and they all equal eachother they must all be either X's or O's
             boardArray[0] === boardArray[1] &&
-            boardArray[0] === boardArray[1]) {
+            boardArray[0] === boardArray[2]) {
             return "fr";
         }
         if (boardArray[3] !== '' &&
