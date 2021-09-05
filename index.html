@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='./reset.css'>
     <link rel='stylesheet' href='./styles.css'>
 </head>
+
 <body>
     <div id='hero-container'>
         <h1>Tic Tac Toe</h1>
         <div id='board'>
-            <div data-index='0' class='space'></div>
-            <div data-index='1' class='space'></div>
-            <div data-index='2' class='space'></div>
-            <div data-index='3' class='space'></div>
-            <div data-index='4' class='space'></div>
-            <div data-index='5' class='space'></div>
-            <div data-index='6' class='space'></div>
-            <div data-index='7' class='space'></div>
-            <div data-index='8' class='space'></div>
+            <!-- adding classes to each space that denote their row and column affiliations for highlighting on win-->
+            <!-- f-first s-second t-third c-column r-row  fs-frontslash bs-backslash -->
+            <div data-index='0' class='space fr fc bs'></div>
+            <div data-index='1' class='space fr sc'></div>
+            <div data-index='2' class='space fr tc fs'></div>
+            <div data-index='3' class='space sr fc'></div>
+            <div data-index='4' class='space sr sc fs bs'></div>
+            <div data-index='5' class='space sr tc'></div>
+            <div data-index='6' class='space tr fc fs'></div>
+            <div data-index='7' class='space tr sc'></div>
+            <div data-index='8' class='space tr tc bs'></div>
         </div>
         <div id='reset-container'>
             <button type='button' id='reset-btn'>Reset</button>
@@ -30,4 +34,5 @@
     </div>
     <script src='./script.js'></script>
 </body>
+
 </html>

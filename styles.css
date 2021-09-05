@@ -24,7 +24,6 @@ h1 {
     display: grid;
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: repeat(3, 150px);
-
 }
 
 .space {
@@ -38,4 +37,15 @@ h1 {
 
 #reset-btn {
     font-size: 1rem;
+}
+
+.fc,
+.sc,
+.tc,
+.fr,
+.sr,
+.tr,
+.fs,
+.bs {
+    background-color: lightgray;
 }
