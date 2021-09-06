@@ -1,4 +1,4 @@
-function player(name, sym) { // define a function for use as utility returning a players name and symbol / 'X' or 'O'
+function player(name, sym) { // define a function for use as utility for storing a players name and symbol / 'X' or 'O'
     return {
         name,
         sym,
@@ -49,13 +49,15 @@ const board = (() => { // an object named board that will hold all data and meth
         })
     }
     const renderWin = (boxes) => { //method to style the spaces of the winning game board
-        /* i dont like the current implementation of this but i need ot break from coding now */
-        /* JS does not cleanly edit entire CSS classes. just can add rules to specific elements */
-        /* undoing these changes with anothr function is the problem, for now a board.reset will refresh the page*/
-
         var classesNodeList = document.querySelectorAll("." + boxes); // get list of all element boxes that make up the win
         var classes = Array.prototype.map.call(classesNodeList, function(element) { //use map method to go though each element
-            element.style = "color:red;" //style the text red
+            element.classList.add("winCombo") // add class winCombo to the wining spaces
+        });
+    }
+    const clearWin = (boxes) => { //method to unstyle the spaces of the winning game board
+        var classesNodeList = document.querySelectorAll(".space"); // get list of all boxes that make up the board
+        var classes = Array.prototype.map.call(classesNodeList, function(element) { //use map method to go though each element
+            element.classList.remove("winCombo"); // remove class winCombo to the wining spaces
         });
     }
     const renderBoard = () => { //method to draw the state of the game board
@@ -64,6 +66,7 @@ const board = (() => { // an object named board that will hold all data and meth
         }
     }
     const reset = () => { // method to reset the game board
+        clearWin(); // removes styling of winning boxes
         playboardArray = playboardArray.map(function() { //map() method creates a new array populated with the results of a provided function on every element in the calling array
             return ''; // (a fancy foreach type loop) sets all elements to '' / blank but defined.
         });
@@ -72,7 +75,7 @@ const board = (() => { // an object named board that will hold all data and meth
         moves = 0; //we should reset the moves counter too
 
         /* hack in this brute force page reload to refresh JS CSS changes  for now */
-        location.reload()
+        //location.reload()
     }
     const spaceIsEmpty = (item) => { // method to determine if the provided game board space 'item' is empty  / a fancy if statement called as function
         return item === ''; // returns true if the space is exatcly a string of value '' / blank but defined
@@ -100,10 +103,9 @@ resetBtn.addEventListener('click', board.reset); // add a click listener to rese
 const game = (() => { // an object 'game' that will contain all variables and methods relating to the game logic
 
     const playerWon = (boardArray) => { // the only method we need / will analyise the whole game board (boardArray) and detrmines if a winning state has been reached
-        let winningPlayer; // initialize a var for the winner
 
         //check every box in every row
-        if (boardArray[0] !== '' && // the one of the spaces isnt blank and they all equal eachother they must all be either X's or O's
+        if (boardArray[0] !== '' && // if one of the spaces isnt blank and they all equal eachother they must all be either X's or O's
             boardArray[0] === boardArray[1] &&
             boardArray[0] === boardArray[2]) {
             return "fr"; //first row

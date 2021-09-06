@@ -49,3 +49,8 @@ h1 {
 .bs {
     background-color: lightgray;
 }
+
+.winCombo {
+    background-color: yellow;
+    color: red;
+}
